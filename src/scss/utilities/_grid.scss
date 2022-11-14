@@ -1,0 +1,66 @@
+// grid system and media queries
+@use "sass:math";
+
+$grid-col-count: 12;
+$grid-col-gutter: 10;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: - #{$grid-col-gutter}px;
+  margin-right: - #{$grid-col-gutter}px;
+}
+
+.col {
+  padding-left: #{$grid-col-gutter}px;
+  padding-right: #{$grid-col-gutter}px;
+  flex: 1;
+}
+
+
+@mixin make-cols($num) {
+
+ .col-#{$num} {
+    flex-basis: math.div(100% , $grid-col-count)* $num;
+    max-width: math.div(100% , $grid-col-count)* $num;
+  }
+
+  @include for-size('phone-only') {
+    .col-xs-#{$num} {
+      flex-basis: math.div(100% , $grid-col-count)* $num;
+      max-width: math.div(100% , $grid-col-count)* $num;
+    }
+  }
+  @include for-size('tablet-portrait-up') {
+    .col-sm-#{$num} {
+      flex-basis: math.div(100% , $grid-col-count)* $num;
+      max-width: math.div(100% , $grid-col-count)* $num;
+    }
+  }
+  @include for-size('tablet-landscape-up') {
+    .col-md-#{$num} {
+      flex-basis: math.div(100% , $grid-col-count)* $num;
+      max-width: math.div(100% , $grid-col-count)* $num;
+    }
+  }
+  @include for-size('desktop-up') {
+    .col-lg-#{$num} {
+      flex-basis: math.div(100% , $grid-col-count)* $num;
+      max-width: math.div(100% , $grid-col-count)* $num;
+    }
+  }
+  @include for-size('big-desktop-up') {
+    .col-xl-#{$num} {
+      flex-basis: math.div(100% , $grid-col-count)* $num;
+      max-width: math.div(100% , $grid-col-count)* $num;
+    }
+  }
+}
+
+$num: 0;
+@while $num <= $grid-col-count {
+  @include make-cols($num);
+  $num: $num + 1;
+}
+
+

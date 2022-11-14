@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;600&display=swap');
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-weight: 300;
+  scroll-behavior: smooth;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  font-size: $font-size-base;
+  background: $body-bg;
+  color: $font-color-base;
+  @include rtl(font-family, $font-family-base, $font-family-rtl);
+}
+
+.category-books {
+  .book {
+    flex: 1 0 calc(25% - 15px);
+    max-width: calc(25% - 15px);
+
+    .book-thumb {
+      img {
+        height: 200px;
+      }
+    }
+
+
+  }
+}

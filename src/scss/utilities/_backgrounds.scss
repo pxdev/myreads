@@ -1,0 +1,78 @@
+@mixin bg($bg) {
+  background: $bg;
+  &:hover {
+    background: darken($bg, 0.5%);
+   }
+}
+
+.bg-white {
+  background: #FFF;
+}
+
+.bg-primary {
+  @include bg($primary);
+}
+
+.bg-secondary {
+  @include bg($secondary);
+}
+
+.bg-warning {
+  @include bg($warning);
+}
+
+.bg-success {
+  @include bg($success);
+}
+.bg-preparing {
+  @include bg($pink);
+}
+.bg-waiting {
+  @include bg($teal);
+}
+
+.bg-info {
+  @include bg($info);
+}
+
+.bg-danger {
+  @include bg($danger);
+}
+.bg-teal {
+  @include bg($teal);
+}
+
+.bg-yellow {
+  @include bg($yellow);
+}
+
+.bg-gray {
+  @include bg($gray);
+}
+
+.bg-dark-gray {
+  @include bg($dark-gray);
+}
+.bg-pink {
+  @include bg($pink);
+}
+
+
+.bg-dark {
+  @include bg($dark);
+}
+
+// borders
+.bd {border: 1px solid $border-color}
+.bd-r {border-right: 1px solid $border-color}
+.bd-b {border-bottom: 1px solid $border-color}
+.bd-l {border-left: 1px solid $border-color}
+.bd-t {border-top: 1px solid $border-color}
+
+
+
+// shadows
+
+.shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}

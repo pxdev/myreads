@@ -1,0 +1,11 @@
+@mixin make-opacity($num) {
+  .op-#{$num} {
+    opacity: 0 + ($num * 0.1);
+  }
+
+}
+$num: 1;
+@while $num <= 10 {
+  @include make-opacity($num);
+  $num: $num + 1;
+}

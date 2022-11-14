@@ -1,0 +1,65 @@
+.tabbed-nav {
+  @extend %flex-area;
+  align-items: stretch;
+  padding: 15px 0;
+
+  border-bottom: 1px solid $border-color;
+
+  a {
+    font-size: 20px;
+    padding: 0 5px;
+    opacity: 0.4;
+
+    &.active {
+      font-weight: 500;
+      opacity: 1;
+    }
+
+  }
+
+
+}
+
+
+.data-tabs {
+  border-bottom: 1px solid lighten($border-color, 2);
+
+
+
+  ul {
+    list-style: none;
+    display: flex;
+
+    a {
+      padding: 10px 5px;
+      margin: 0 20px;
+       font-size: 14px;
+      border-bottom: 3px solid transparent;
+      display: block;
+
+      &:first-child {
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      &.active {
+        font-weight: 700;
+        color: $secondary;
+        border-color: $secondary;
+      }
+
+    }
+  }
+
+  &.lg {
+    a {
+      font-size: 16px;
+      padding: 15px 5px;
+      margin: 0 30px;
+    }
+  }
+
+}
+.data-tabs-content {
+  position: relative;
+}

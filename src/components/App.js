@@ -20,47 +20,21 @@ const App = () => {
         getBooks();
     }, []);
 
-    // const removeContact = (contact) => {
-    //   ContactsAPI.remove(contact);
-    //
-    //   setContacts(contacts.filter((c) => c.id !== contact.id));
-    // };
-
-    // const createContact = (contact) => {
-    //   const create = async () => {
-    //     const res = await ContactsAPI.create(contact);
-    //     setContacts(contacts.concat(res));
-    //   };
-    //
-    //   create();
-    //   navigate("/");
-    // };
 
     console.log(books)
 
     return (
         <Fragment>
-            <CategoriesComponent books={books} name={'Current Reading'}/>
+            <header className="header">
+                <div className="container"><h1 className="pd-y-20">My Reads</h1></div>
+            </header>
+            <main className="container main">
+                <CategoriesComponent books={books.filter(book => book.shelf === 'currentlyReading')} name={'Current Reading'}  sub={'Books i currently reading'}/>
+                <CategoriesComponent books={books.filter(book => book.shelf === 'wantToRead')} name={'Want to Read'} sub={'Books i want to  read'}/>
+                <CategoriesComponent books={books.filter(book => book.shelf === 'read')} name={'Read'} sub={'Books i have done reading'}/>
+            </main>
         </Fragment>
-        // <Routes>
-        //   <Route
-        //     exact
-        //     path="/"
-        //     element={
-        //       <ListContacts contacts={contacts} onDeleteContact={removeContact} />
-        //     }
-        //   />
-        //   <Route
-        //     path="/create"
-        //     element={
-        //       <CreateContact
-        //         onCreateContact={(contact) => {
-        //           createContact(contact);
-        //         }}
-        //       />
-        //     }
-        //   />
-        // </Routes>
+
     );
 };
 

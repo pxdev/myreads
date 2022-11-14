@@ -1,0 +1,18 @@
+// main configuration
+@import "config/variables";
+
+
+// utilities
+@import "utilities/utilites";
+
+// general components
+@import "components/components";
+
+
+//Layout components
+@import "components/header";
+@import "components/footer";
+
+
+@import "themes/myreads";
+

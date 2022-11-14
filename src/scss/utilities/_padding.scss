@@ -1,0 +1,67 @@
+/* 3.3 padding */
+@mixin make-padding($num) {
+
+    // generating margin classes in px
+    .pd-#{$num} {
+        padding: #{$num}px !important;;
+    }
+    .pd-t-#{$num} {
+        padding-top: #{$num}px !important;;
+    }
+    .pd-b-#{$num} {
+        padding-bottom: #{$num}px !important;;
+    }
+    .pd-r-#{$num} {
+        padding-right: #{$num}px !important;;
+    }
+    .pd-l-#{$num} {
+        padding-left: #{$num}px !important;;
+    }
+    .pd-x-#{$num} {
+        padding-left: #{$num}px !important;
+        padding-right: #{$num}px !important;;
+    }
+    .pd-y-#{$num} {
+        padding-top: #{$num}px !important;;
+        padding-bottom: #{$num}px !important;;
+    }
+
+
+}
+
+// generating margin class from 5 to 100
+$num: 0;
+@while $num <= 100 {
+    @include make-padding($num);
+    $num: $num + 5;
+}
+
+.page-margin {
+    padding-left: $page-margin;
+    padding-right: $page-margin;
+
+
+    @include for-size('small-devices'){
+        padding-left: $page-margin-sm;
+        padding-right: $page-margin-sm;
+    }
+
+
+}
+
+
+/* Flex Gap */
+@mixin make-gap($num) {
+
+    // generating margin classes in px
+    .gap-#{$num} {
+        gap: #{$num}px !important;;
+    }
+
+
+}
+$num: 0;
+@while $num <= 100 {
+    @include make-gap($num);
+    $num: $num + 5;
+}

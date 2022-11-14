@@ -1,0 +1,60 @@
+
+.data-title {
+  position: relative;
+
+  &:hover {
+    &:after {
+      position: absolute;
+      content: attr(data-title);
+      padding: 0.4rem;
+      left: auto;
+      bottom: 100%;
+      color: #fff;
+      display: block;
+      background: rgba(34, 46, 58, .8);
+      white-space: nowrap;
+      font-size: 12px;
+      box-shadow: 0 2px 35px rgba(0, 0, 0, .1);
+      border-radius: 4px;
+      animation-name: fadeOut;
+      animation-fill-mode: both;
+      animation-duration: 0.4s;
+      animation-delay: 2.6s;
+      z-index: 100;
+    }
+
+  }
+}
+
+
+.hint-box {
+  background: rgba(34, 46, 58, .8);
+  color: #FFF;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: 0 2px 35px rgba(0, 0, 0, .1);
+  animation-name: fadeOut;
+  animation-fill-mode: both;
+  animation-duration: 0.4s;
+  animation-delay: 3s;
+  z-index: 100;
+  position: absolute;
+  top: 140%;
+  padding: 5px;
+  min-width: 300px;
+  right: 0;
+
+  &:before {
+    content: "";
+    border: 8px solid transparent;
+    border-bottom-color:  rgba(34, 46, 58, .8);
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: -15px;
+    margin-left: -12px;
+
+  }
+}
+
+

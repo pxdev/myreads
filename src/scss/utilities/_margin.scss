@@ -1,0 +1,59 @@
+
+@mixin make-margin($num) {
+    .mg-#{$num} {
+        margin: #{$num}px;
+    }
+    .mg-t-#{$num} {
+        margin-top: #{$num}px;
+    }
+    .mg-b-#{$num} {
+        margin-bottom: #{$num}px;
+    }
+    .mg-r-#{$num} {
+        margin-right: #{$num}px;
+    }
+    .mg-l-#{$num} {
+        margin-left: #{$num}px;
+    }
+    .mg-x-#{$num} {
+        margin-left: #{$num}px;
+        margin-right: #{$num}px;
+    }
+    .mg-y-#{$num} {
+        margin-top: #{$num}px;
+        margin-bottom: #{$num}px;
+    }
+
+
+}
+
+// generating margin class from 5 to 100
+$num: 0;
+@while $num <= 100 {
+    @include make-margin($num);
+    $num: $num + 5;
+}
+
+
+.mg-t-auto {
+    margin-top: auto;
+}
+
+.mg-r-auto {
+    margin-right: auto;
+}
+
+.mg-b-auto {
+    margin-bottom: auto;
+}
+
+.mg-l-auto {
+    margin-left: auto;
+}
+
+.mg-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
