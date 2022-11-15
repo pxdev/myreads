@@ -19,9 +19,13 @@ body {
 }
 
 .category-books {
+  gap: 20px;
   .book {
     flex: 1 0 calc(25% - 15px);
     max-width: calc(25% - 15px);
+    background: $gray;
+
+
 
     .book-thumb {
       img {

@@ -16,127 +16,14 @@ header {
     padding-bottom: 10px;
   }
 
-  .language-icon {
-    opacity: 0.6;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .user-avatar {
-    height: 42px;
-    width: 42px;
-  }
 
 
-  &.fixed {
-    position: sticky;
-    left: 0;
-    top: 0;
-    right: 0;
-    transform: translateY(0);
-
-  }
-
-  .has-notifications {
-    position: relative;
-
-
-    &:after {
-      position: absolute;
-      content: "";
-      display: block;
-      height: 8px;
-      width: 8px;
-      background: $teal;
-      border: 1px solid $light-bg;
-      border-radius: 100%;
-      right: 2px;
-      bottom: 10px;
-    }
-
-
-  }
-
-  .alert-item {
-    position: relative;
-    overflow: hidden;
-    transition: 0.2s all ease-in-out;
-
-    &:after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      width: 0;
-      background: $secondary;
-      bottom: 0;
-      transition: 0.2s all ease-in-out;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    &:hover {
-
-      &:after {
-        width: 100%;
-      }
-    }
-
-  }
-
-  .alert-icon {
-    height: 8px;
-    width: 8px;
-    display: block;
-    border-radius: 100%;
-    background: $teal;
-    margin: 10px 0;
-    opacity: 0.6;
-  }
-
-
-  .user-profile {
-    .dropdown-btn {
-      align-items: flex-end !important;
-
-      svg {
-        margin-bottom: 2px;
-        fill: $primary;
-      }
-    }
-  }
 
 
   .logo {
     img {
       max-width: 218px;
     }
-  }
-
-  .nav-heading {
-    display: none;
-
-    @include for-size('small-devices') {
-      padding: 22px 15px;
-      border-bottom: 1px solid $border-color;
-      margin-bottom: 20px;
-      display: block;
-
-    }
-
-
-    h5 {
-      font-size: 16px;
-      font-weight: normal;
-    }
-
-    a {
-      font-size: 12px;
-      opacity: 0.6;
-    }
-
-
   }
 
   nav {
@@ -163,14 +50,12 @@ header {
         position: relative;
 
 
-        @include for-size('small-devices') {
-          width: 100%;
-        }
+
 
         a {
           font-size: 16px;
           display: block;
-          padding: 20px 0;
+          padding: 20px 10px;
           margin: 0 15px;
           position: relative;
           color: $primary;
@@ -183,7 +68,7 @@ header {
             &:before {
               content: "";
               height: 4px;
-              background: $secondary;
+              background: $yellow;
               width: 100%;
               display: block;
               position: absolute;
