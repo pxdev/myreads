@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba($primary, 0.2);
+  background: rgba($light-bg, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,125 +13,194 @@
     animation-duration: 1s;
     display: none;
   }
+
+}
+.loader {
+  --background: linear-gradient(135deg, #23C4F8, #275EFE);
+  --shadow: rgba(39, 94, 254, 0.28);
+  --text: #6C7486;
+  --page: rgba(255, 255, 255, 0.36);
+  --page-fold: rgba(255, 255, 255, 0.52);
+  --duration: 3s;
+  width: 200px;
+  height: 140px;
+  position: relative;
 }
 
-
-.pl,
-.pl__worm {
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
+.loader:before, .loader:after {
+  --r: -6deg;
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  width: 120px;
+  top: 80%;
+  box-shadow: 0 16px 12px var(--shadow);
+  transform: rotate(var(--r));
 }
 
-.pl {
-  animation-name: bump5;
-  animation-timing-function: linear;
-  width: 5em;
-  height: 5em;
+.loader:before {
+  left: 4px;
 }
 
-.pl__ring {
-  stroke: hsla(var(--hue), 10%, 10%, 0.1);
-  transition: stroke 0.3s;
+.loader:after {
+  --r: 6deg;
+  right: 4px;
 }
 
-.pl__worm {
-  animation-name: worm5;
-  animation-timing-function: cubic-bezier(0.42, 0.17, 0.75, 0.83);
+.loader div {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+  box-shadow: 0 4px 6px var(--shadow);
+  background-image: var(--background);
 }
 
-/* Animations */
-@keyframes bump5 {
-  from,
-  42%,
-  46%,
-  51%,
-  55%,
-  59%,
-  63%,
-  67%,
-  71%,
-  74%,
-  78%,
-  81%,
-  85%,
-  88%,
-  92%,
-  to {
-    transform: translate(0, 0);
-  }
-
-  44% {
-    transform: translate(1.33%, 6.75%);
-  }
-
-  53% {
-    transform: translate(-16.67%, -0.54%);
-  }
-
-  61% {
-    transform: translate(3.66%, -2.46%);
-  }
-
-  69% {
-    transform: translate(-0.59%, 15.27%);
-  }
-
-  76% {
-    transform: translate(-1.92%, -4.68%);
-  }
-
-  83% {
-    transform: translate(9.38%, 0.96%);
-  }
-
-  90% {
-    transform: translate(-4.55%, 1.98%);
-  }
+.loader div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
 }
 
-@keyframes worm5 {
-  from {
-    stroke-dashoffset: 10;
-  }
-
-  25% {
-    stroke-dashoffset: 295;
-  }
-
-  to {
-    stroke-dashoffset: 1165;
-  }
+.loader div ul li {
+  --r: 180deg;
+  --o: 0;
+  --c: var(--page);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transform-origin: 100% 50%;
+  color: var(--c);
+  opacity: var(--o);
+  transform: rotateY(var(--r));
+  -webkit-animation: var(--duration) ease infinite;
+  animation: var(--duration) ease infinite;
 }
 
+.loader div ul li:nth-child(2) {
+  --c: var(--page-fold);
+  -webkit-animation-name: page-2;
+  animation-name: page-2;
+}
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+.loader div ul li:nth-child(3) {
+  --c: var(--page-fold);
+  -webkit-animation-name: page-3;
+  animation-name: page-3;
 }
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+
+.loader div ul li:nth-child(4) {
+  --c: var(--page-fold);
+  -webkit-animation-name: page-4;
+  animation-name: page-4;
 }
-.progressbar {
-  position: fixed;
-  width: 0;
+
+.loader div ul li:nth-child(5) {
+  --c: var(--page-fold);
+  -webkit-animation-name: page-5;
+  animation-name: page-5;
+}
+
+.loader div ul li svg {
+  width: 90px;
+  height: 120px;
+  display: block;
+}
+
+.loader div ul li:first-child {
+  --r: 0deg;
+  --o: 1;
+}
+
+.loader div ul li:last-child {
+  --o: 1;
+}
+
+.loader span {
+  display: block;
   left: 0;
-  z-index: 9999999;
-  animation: start 10s linear forwards;
+  right: 0;
+  top: 100%;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--text);
+}
 
-  &.finished {
-    animation-play-state: running;
-    animation-duration: 1s;
-    &::after {
-      display: none;
-    }
+@keyframes page-2 {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
   }
-  @keyframes start {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
+
+  20% {
+    opacity: 1;
   }
- }
+
+  35%, 100% {
+    opacity: 0;
+  }
+
+  50%, 100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-3 {
+  15% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  50%, 100% {
+    opacity: 0;
+  }
+
+  65%, 100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-4 {
+  30% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  65%, 100% {
+    opacity: 0;
+  }
+
+  80%, 100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-5 {
+  45% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  80%, 100% {
+    opacity: 0;
+  }
+
+  95%, 100% {
+    transform: rotateY(0deg);
+  }
+}

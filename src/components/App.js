@@ -1,10 +1,12 @@
 import React, {useState, useEffect, Fragment} from "react";
-// import {Route, Routes, useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 // UI Components
 import * as BooksAPI from "../utils/BooksAPI";
 import CategoriesComponent from "./CategoriesComponent";
 import Loading from "./Loading";
+import Search from "./Search";
 
 const App = () => {
 
@@ -28,16 +30,11 @@ const App = () => {
 
     // update book category
     const ChangeCategory = (book, category) => {
-        console.log('Start')
         BooksAPI.update(book, category).then(async ()=>{
            await getBooks();
         });
-        console.log('End' , books)
 
     }
-
-
-   console.log(isLoading)
 
     return (
         <Fragment>
@@ -48,10 +45,14 @@ const App = () => {
                 <div className="container">
                     <h1 className="pd-y-20">My Reads</h1>
                     <div className="main-nav">
+                        <Routes>
+                            <Route path="/search" element={<Search />}/>
+                        </Routes>
+
                         <nav>
                             <ul>
-                                <li><a href="/" className={"router-link-active"}>Home</a></li>
-                                <li><a href="search">Search</a></li>
+                                <li><Link to={"/"} className={"router-link-active"}>Home</Link></li>
+                                <li><Link to={"/search"}>Search</Link></li>
                             </ul>
                         </nav>
                     </div>
@@ -69,6 +70,9 @@ const App = () => {
                                      books={books.filter(book => book.shelf === 'read')} name={'Read'}
                                      sub={'Books i have done reading'}/>
             </main>
+
+
+
         </Fragment>
 
     );

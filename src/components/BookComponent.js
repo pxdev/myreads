@@ -1,4 +1,5 @@
 import {Fragment, useState} from "react";
+import NoImage from '../assets/no_data_list.png'
 
 const BookComponent = (props) => {
 
@@ -54,7 +55,7 @@ const BookComponent = (props) => {
                     </div>
                 </div>
                 <div className="book-thumb pd-10 rounded d-flex justify-content-center">
-                    <img className="rounded" src={props.book.imageLinks.thumbnail} alt=""/>
+                    <img className="rounded" src={props.book.imageLinks ? props.book.imageLinks.thumbnail : NoImage} alt=""/>
                 </div>
                 <div className="pd-20 tx-center">
                     <h4 className="mg-b-5 tx-14 tx-secondary">{props.book.title}</h4>
@@ -63,9 +64,9 @@ const BookComponent = (props) => {
                             <p className="op-6 tx-12">No Subtitle</p>}
                     </div>
                     <div className="d-flex flex-wrap justify-content-center gap-5">
-                        {props.book.authors.map((author, index) => (
+                        {props.book.authors ? props.book.authors.map((author, index) => (
                             <div key={index} className="tx-12 bg-white bd rounded pd-5">{author}</div>
-                        ))}
+                        )) : ""}
                     </div>
 
 

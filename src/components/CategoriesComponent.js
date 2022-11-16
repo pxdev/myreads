@@ -6,6 +6,7 @@ const CategoriesComponent = (props) => {
 
     return (
         <Fragment>
+            <div className={props.isSearch? "is-search" : ""}>
             <div className="category shadow card bd pd-50 mg-b-30">
                 <div className="d-flex justify-content-between align-items-center mg-b-20">
                     <div className="pd-b-10">
@@ -22,6 +23,7 @@ const CategoriesComponent = (props) => {
                         <NoData text='No Books to Display' sub="we cant find any books in this category" />
                     }
                 </div>
+            </div>
             </div>
         </Fragment>
     )
