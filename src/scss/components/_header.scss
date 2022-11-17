@@ -60,9 +60,11 @@ header {
           position: relative;
           color: $primary;
 
+        &:first-child {
+          margin-left: 0;
+        }
 
-
-          &.router-link-active {
+          &.active {
              font-weight: 700;
 
             &:before {

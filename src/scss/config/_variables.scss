@@ -3,22 +3,22 @@ $body-bg : #F9FAFC;
 $light-bg: #FFF;
 
 // primary colors
-$primary: #5C7284;
+$primary: #205364;
 $danger: #EA5381;
 $warning: #F3846A;
-$secondary: #3A99B9;
+$secondary: #4ABCE2;
 $success: #49B882;
-$teal: #96D7CA;
-$info: #3A99B9;
+$teal: #5CCDBB;
+$info: #71B1F0;
 $pink:#7446CA;
 $yellow:#F7AF3C;
 
-$heading-color : #5C7284;
+$heading-color : #205364;
 
 // extra colors
 $gray:#FAFAFA ;
 $dark-gray:#EDEFF4 ;
-$dark:#BDC8D0 ;
+$dark:#A8ABB9 ;
 $border-color : #E1E8ED;
 
 // typography
@@ -27,9 +27,14 @@ $font-color-base: #5C7284;
 $font-family-base: 'Readex Pro', sans-serif;
 $font-family-rtl: 'Readex Pro', sans-serif;
 
+$small-font-size : 12px;
+$normal-font-size : 14px;
+$large-font-size : 14px;
+$extra-large-font-size: 14px;
+
 // forms size
-$small-form-size : 30px;
-$normal-form-size : 40px;
+$small-form-size : 36px;
+$normal-form-size : 46px;
 $large-form-size : 50px;
 $extra-large-form-size: 55px;
 
@@ -42,4 +47,7 @@ $page-margin : 40px;
 $page-margin-sm : 20px;
 $page-margin-xs : 10px;
 
-$normal-radius: 6px
+$normal-radius:6px;
+
+// Drawer
+$drawer-size : 400px;

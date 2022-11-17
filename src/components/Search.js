@@ -1,83 +1,93 @@
 import React, {Fragment, useEffect, useState} from "react";
 import * as BooksAPI from "../utils/BooksAPI";
 import CategoriesComponent from "./CategoriesComponent";
-import {useNavigate} from "react-router-dom";
 
 
 const Search = (props) => {
 
-    let navigate = useNavigate();
-
-    const closeSearch = () => {
-        navigate("/");
-        getBooks();
-    }
 
     const [query, setQuery] = useState("");
 
-    const [books, setBooks] = useState([]);
+    const [searchBooks, setSearchBooks] = useState([]);
 
-    const getBooks = async () => {
 
-        const res = await BooksAPI.search(query)
+    useEffect(() => {
+        getSearchBooks();
+    }, []);
 
-        if (typeof res ==='undefined') {
-            setBooks([])
-        } else {
-            setBooks(res)
+
+    const getSearchBooks = async () => {
+        if (query) {
+            const res = await BooksAPI.search(query)
+
+            if (typeof res === 'undefined' || res.error) {
+                setSearchBooks([])
+            } else {
+                res.map((book) => {
+                    let bookId = book.id;
+                    let bookCategory = props.originalBooks.find((element) => element.id === bookId);
+                    if (bookCategory)
+                        book['shelf'] = bookCategory.shelf
+                    return book;
+                })
+                setSearchBooks(res)
+            }
         }
 
-        console.log(books)
 
     };
 
-    useEffect(() => {
-        getBooks();
-    }, []);
 
     const updateQuery = (query) => {
-        setQuery(query.trim());
-        getBooks()
+
+        setQuery(query);
+
+        if (query === "") {
+            setSearchBooks([])
+        } else {
+            getSearchBooks()
+        }
     };
 
     const clearQuery = () => {
         updateQuery("");
+        setSearchBooks([])
     };
 
-    // update book category
-    const ChangeCategory = (book, category) => {
-        BooksAPI.update(book, category).then(async ()=>{
-            await getBooks();
-        });
 
-
-    }
 
     return (
-        <div className="search-component">
+        <Fragment>
+            <main className={"container"}>
+             <div className="search-component">
 
-            <button onClick={closeSearch} className={"btn close-btn"}><i className="ri-close-line tx-42"/></button>
+                {/*<button onClick={closeSearch} className={"btn close-btn"}><i className="ri-close-line tx-32 op-5"/></button>*/}
 
-            <section className={"search-bar mg-t-30"}>
-                <div className="container">
-                    <h5 className={"tx-body tx-12 pd-y-5"}>Search For New Books</h5>
-                    <div className="search-box pre-input flex-fill ">
-                        <span className="pre-icon"><i className="ri-search-line"/></span>
-                        <input value={query} onChange={(e) => updateQuery(e.target.value)} type="text"
-                               className="form-control xl" placeholder="Search for books ..."/>
-                    </div>
-                </div>
-            </section>
+                <section className={"search-bar pd-y-30"}>
+                        <div className="search-box pre-input flex-fill ">
+                            <span className="pre-icon"><i className="ri-search-line"/></span>
+                            <input value={query} onChange={(e) => updateQuery(e.target.value)} type="text"
+                                   className="form-control xl" placeholder="Search for books ..."/>
+
+                            <button className={"btn clear"} onClick={clearQuery}><i
+                                className={query ? "ri-close-circle-line tx-22 tx-danger" : ""}/>
+                            </button>
+
+                        </div>
+                        <p className={"tx-12 op-8 pd-y-5"}>Search by title, author, or ISBN</p>
+                </section>
 
 
-            <main className="container main">
 
-                <CategoriesComponent isSearch={true} onChangeCategory={ChangeCategory}
-                                     books={books} name={'Read'}
-                                     sub={'Books i have done reading'}/>
 
+                    <CategoriesComponent isSearch={true} onChangeCategory={props.onChangeCategory}
+                                         books={searchBooks} name={'Search Results'}
+                                         sub={query ? "Search Results for " + query : "No Keywords Provided"}/>
+
+
+            </div>
             </main>
-        </div>
+        </Fragment>
     )
 }
 

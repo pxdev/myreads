@@ -1,7 +1,24 @@
-import {Fragment, useState} from "react";
+import {Fragment, useState, useEffect, useRef} from "react";
 import NoImage from '../assets/no_data_list.png'
 
 const BookComponent = (props) => {
+
+    const dropDownRef = useRef();
+
+
+    useEffect(() => {
+        const handler = (e) => {
+            if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+                setDropDown(false)
+            }
+        };
+
+        window.addEventListener("click", handler);
+        return () => {
+            window.removeEventListener("click", handler);
+        };
+    });
+
 
     let [isDropDown, setDropDown] = useState(false)
 
@@ -10,20 +27,19 @@ const BookComponent = (props) => {
         setDropDown(isDropDown = !isDropDown)
     }
 
-
     const changeToCategory = (category) => {
        props.changeBookCategory(props.book, category)
     }
 
 
+
     return (
         <Fragment>
             <div className="book rounded">
-                <div className="d-flex  justify-content-end pd-10">
+                <div className="d-flex justify-content-end pd-x-15">
                     <div className={isDropDown ? 'dropdown shown' : 'dropdown'}>
-                        <button onClick={toggleDropDown} className="btn d-flex align-items-center dropdown-btn pd-0">
-                            <span className={"tx-12"}>Move</span>
-                            <i className={isDropDown ? 'ri-arrow-up-s-line tx-14 tx-secondary' : 'ri-arrow-down-s-line  tx-14'}></i>
+                        <button onClick={toggleDropDown} className="btn d-flex align-items-center dropdown-btn pd-0" ref={dropDownRef}>
+                             <i className={isDropDown ? 'ri-settings-3-line tx-22 tx-secondary' : 'ri-settings-3-line  tx-22'} />
                         </button>
                         <div className="dropdown-menu">
                             <h3 className="tx-12 pd-10 tx-body op-6">Move to...</h3>
@@ -45,7 +61,7 @@ const BookComponent = (props) => {
                                               onClick={(e) => changeToCategory('read')}>Read</button>
                             }
                             {
-                                props.book.shelf === 'none' ? ''
+                                props.book.shelf === '' || !props.book.shelf ? ''
                                     : <button type={"button"} className="btn tx-start  menu-item btn-block"
                                               onClick={(e) => changeToCategory('none')}><span
                                         className={"tx-danger"}>Remove</span></button>
