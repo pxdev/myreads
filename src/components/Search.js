@@ -2,19 +2,11 @@ import React, {Fragment, useEffect, useState} from "react";
 import * as BooksAPI from "../utils/BooksAPI";
 import CategoriesComponent from "./CategoriesComponent";
 
-
 const Search = (props) => {
-
 
     const [query, setQuery] = useState("");
 
     const [searchBooks, setSearchBooks] = useState([]);
-
-
-    useEffect(() => {
-        getSearchBooks();
-    }, []);
-
 
     const getSearchBooks = async () => {
         if (query) {
@@ -26,17 +18,19 @@ const Search = (props) => {
                 res.map((book) => {
                     let bookId = book.id;
                     let bookCategory = props.originalBooks.find((element) => element.id === bookId);
-                    if (bookCategory)
+                    if (bookCategory) {
                         book['shelf'] = bookCategory.shelf
+                    }
                     return book;
                 })
                 setSearchBooks(res)
             }
         }
-
-
     };
 
+    useEffect(() => {
+        getSearchBooks();
+    });
 
     const updateQuery = (query) => {
 
@@ -55,15 +49,12 @@ const Search = (props) => {
     };
 
 
-
     return (
         <Fragment>
             <main className={"container"}>
-             <div className="search-component">
+                <div className="search-component">
 
-                {/*<button onClick={closeSearch} className={"btn close-btn"}><i className="ri-close-line tx-32 op-5"/></button>*/}
-
-                <section className={"search-bar pd-y-30"}>
+                    <section className={"search-bar pd-y-30"}>
                         <div className="search-box pre-input flex-fill ">
                             <span className="pre-icon"><i className="ri-search-line"/></span>
                             <input value={query} onChange={(e) => updateQuery(e.target.value)} type="text"
@@ -75,17 +66,14 @@ const Search = (props) => {
 
                         </div>
                         <p className={"tx-12 op-8 pd-y-5"}>Search by title, author, or ISBN</p>
-                </section>
-
-
-
+                    </section>
 
                     <CategoriesComponent isSearch={true} onChangeCategory={props.onChangeCategory}
                                          books={searchBooks} name={'Search Results'}
                                          sub={query ? "Search Results for " + query : "No Keywords Provided"}/>
 
 
-            </div>
+                </div>
             </main>
         </Fragment>
     )

@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 import BookComponent from "./BookComponent";
-import NoData from "./NoData";
+import NoData from "./ui/NoData";
 
 const CategoriesComponent = (props) => {
 
@@ -20,7 +20,8 @@ const CategoriesComponent = (props) => {
                     {props.books.length ?
                         props.books.map((book, index) => (<BookComponent changeBookCategory={props.onChangeCategory} key={book.id + index} book={book}/>))
                         :
-                        <NoData text='No Books to Display' sub="we cant find any books in this category" />
+                        <NoData text='No Books to Display' sub="We cant find any books in this category" />
+                        /* show no data component if there is no data */
                     }
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import NoImage from '../assets/no_data_list.png'
+import NoImage from '../../assets/no_data_list.png'
 const NoData = (props) => {
 
 

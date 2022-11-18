@@ -1,4 +1,0 @@
-- how to handle click outside drodpwn.
-https://blog.logrocket.com/detect-click-outside-react-component-how-to/
-
-- 

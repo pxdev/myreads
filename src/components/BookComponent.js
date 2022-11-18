@@ -2,10 +2,13 @@ import {Fragment, useState, useEffect, useRef} from "react";
 import NoImage from '../assets/no_data_list.png'
 
 const BookComponent = (props) => {
-
+    /*
+        dropdown method to toggle the book card dropdown menu
+        also i have added an event listener on the document to close the dropdown
+        if clicked outside the dropdown icon
+        https://blog.logrocket.com/detect-click-outside-react-component-how-to/
+     */
     const dropDownRef = useRef();
-
-
     useEffect(() => {
         const handler = (e) => {
             if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
@@ -19,23 +22,23 @@ const BookComponent = (props) => {
         };
     });
 
-
     let [isDropDown, setDropDown] = useState(false)
 
     const toggleDropDown = (e) => {
         e.preventDefault()
         setDropDown(isDropDown = !isDropDown)
     }
-
+    /*
+     props method to be sent to the app to handele category change.
+     */
     const changeToCategory = (category) => {
        props.changeBookCategory(props.book, category)
     }
 
 
-
     return (
         <Fragment>
-            <div className="book rounded">
+            <div className="book rounded" draggable={"true"}  >
                 <div className="d-flex justify-content-end pd-x-15">
                     <div className={isDropDown ? 'dropdown shown' : 'dropdown'}>
                         <button onClick={toggleDropDown} className="btn d-flex align-items-center dropdown-btn pd-0" ref={dropDownRef}>
