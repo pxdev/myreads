@@ -38,7 +38,7 @@ const BookComponent = (props) => {
 
     return (
         <Fragment>
-            <div className="book rounded" draggable={"true"}  >
+            <div className="book rounded shadow bd" >
                 <div className="d-flex justify-content-end pd-x-15">
                     <div className={isDropDown ? 'dropdown shown' : 'dropdown'}>
                         <button onClick={toggleDropDown} className="btn d-flex align-items-center dropdown-btn pd-0" ref={dropDownRef}>

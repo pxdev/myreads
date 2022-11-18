@@ -11,6 +11,7 @@ This Project is built from scratch for Udacity's React Fundamentals course,
 
 ```bash
 ── Assets
+── Scss
 ── Components
     ├── Ui # for general layout component.
        ├── Page Header.js # Part of layout structire contain the main navigation links.
